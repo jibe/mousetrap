@@ -50,6 +50,11 @@ module Mousetrap
       raise response['error'] if response['error']
       response
     end
+    
+    def instant_bill_custom_charge(item_code, amount = 1.0, quantity = 1, description = nil)
+      add_custom_charge(item_code, amount, quantity, description)
+      bill_now
+    end
 
     def subscription_attributes=(attributes)
       self.subscription = Subscription.new attributes
@@ -106,6 +111,13 @@ module Mousetrap
       self.class.put_resource('customers', 'edit-subscription', code, attributes)
 
       # TODO: Refresh self with reload here?
+    end
+    
+    def bill_now
+      raise "Can only call this on an existing CheddarGetter customer." unless exists?
+      
+      attributes = { :changeBillDate => 'now' }      
+      self.class.put_resource('customers', 'edit-subscription', code, attributes)
     end
 
     def self.all

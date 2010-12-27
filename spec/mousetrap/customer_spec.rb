@@ -23,7 +23,8 @@ describe Mousetrap::Customer do
         :ccCountry    => customer.subscription.billing_country,
         :ccAddress    => customer.subscription.billing_address,
         :ccCity       => customer.subscription.billing_city,
-        :ccState      => customer.subscription.billing_state
+        :ccState      => customer.subscription.billing_state,
+        :changeBillDate => customer.subscription.billing_date
       }
     }
   end
@@ -271,6 +272,22 @@ describe Mousetrap::Customer do
     end
   end
 
+  describe "#bill_now" do
+    it "raises an error if not existing CheddarGetter customer" do
+      c = Mousetrap::Customer.new :code => 'some_customer_code'
+      c.stub :exists? => false
+      expect { c.bill_now }.to raise_error(/existing/)
+    end
+
+    it "puts a billing date with 'now'" do
+      c = Mousetrap::Customer.new :code => 'some_customer_code'
+      c.stub :exists? => true
+      c.class.should_receive(:put_resource).with(
+        'customers', 'edit-subscription', 'some_customer_code', { :changeBillDate => 'now' })
+      c.bill_now
+    end
+  end
+
   describe "protected methods" do
     describe "#create" do
       before do
@@ -344,6 +361,32 @@ describe Mousetrap::Customer do
       it "should not raise an error with CheddarGetter" do
         @customer.class.should_receive(:put_resource).with('customers', 'add-charge', @customer.code, { :eachAmount => 45.00, :chargeCode => 'BOGUS', :quantity => 1, :description => nil }).and_return({ :id => 'some_id' })
         @customer.add_custom_charge('BOGUS', 45.00, 1, nil)
+      end
+    end
+
+    context "with there is not a subscription" do
+      before :all do
+        @customer = Mousetrap::Customer.new
+      end
+
+      it "should raise an error with CheddarGetter" do
+        @customer.class.stub :put_resource => { 'error' => 'some error message' }
+        expect { @customer.add_custom_charge('BOGUS') }.to raise_error('some error message')
+      end
+    end
+  end
+  
+  describe '#instant_bill_custom_charge' do
+    context "when there's a subscription instance" do
+      before :all do
+        @customer = Factory(:new_customer)
+      end
+
+      it "should not raise an error with CheddarGetter" do
+        @customer.should_receive(:add_custom_charge).with('BOGUS', 45.00, 1, nil)
+
+        @customer.should_receive(:bill_now)
+        @customer.instant_bill_custom_charge('BOGUS', 45.00, 1, nil)
       end
     end
 
