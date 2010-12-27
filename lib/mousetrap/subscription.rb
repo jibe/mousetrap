@@ -28,7 +28,8 @@ module Mousetrap
       :credit_card_last_four_digits,
       :credit_card_type,
       :invoices,
-      :items
+      :items,
+      :billing_date
 
     def self.[](code)
       raise_api_unsupported_error
@@ -120,7 +121,8 @@ module Mousetrap
       :credit_card_type,
       :credit_card_verification_code,
       :items,
-      :invoices
+      :invoices,
+      :billing_date
 
     def self.plural_resource_name
       'subscriptions'
