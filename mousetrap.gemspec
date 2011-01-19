@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{mousetrap}
-  s.version = "0.6.4"
+  s.version = "0.6.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jon Larkowski", "Sandro Turriate", "Wolfram Arnold", "Corey Grusden"]
@@ -47,7 +47,7 @@ Gem::Specification.new do |s|
      "spec/support/fixtures.rb",
      "spec/support/random_data.rb"
   ]
-  s.homepage = %q{http://github.com/sproutbox/mousetrap}
+  s.homepage = %q{http://github.com/hashrocket/mousetrap}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
