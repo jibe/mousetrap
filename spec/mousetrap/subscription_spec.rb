@@ -69,6 +69,18 @@ describe Mousetrap::Subscription do
         )[:ccExpMonth].should == nil
       end
     end
+    
+    ["08", "09"].each do |number|
+      context "when month is set to #{number}" do
+        it 'should not raise error' do
+          lambda{ 
+            Mousetrap::Subscription.attributes_for_api(
+              :credit_card_expiration_month => number
+            )
+          }.should_not raise_error
+        end
+      end
+    end
   end
 
   describe '#exists?' do

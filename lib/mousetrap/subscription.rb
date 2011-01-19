@@ -138,7 +138,7 @@ module Mousetrap
         :ccFirstName    => attributes[:billing_first_name],
         :ccLastName     => attributes[:billing_last_name],
         :ccNumber       => attributes[:credit_card_number],
-        :ccExpMonth     => ("%02d" % attributes[:credit_card_expiration_month] if attributes[:credit_card_expiration_month]),
+        :ccExpMonth     => ("%02d" % attributes[:credit_card_expiration_month].to_i if attributes[:credit_card_expiration_month]),
         :ccExpYear      => attributes[:credit_card_expiration_year],
         :ccCardCode     => attributes[:credit_card_code],
         :ccCountry      => attributes[:billing_country],
