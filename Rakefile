@@ -6,7 +6,7 @@ Bundler.setup
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "mousetrap"
+    gem.name = "sproutbox-mousetrap"
     gem.summary = %Q{CheddarGetter API Client in Ruby}
     gem.description = %Q{CheddarGetter API Client in Ruby}
     gem.email = "jonlarkowski@gmail.com"
