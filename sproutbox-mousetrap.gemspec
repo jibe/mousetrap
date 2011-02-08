@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{sproutbox-mousetrap}
-  s.version = "0.6.4"
+  s.version = "0.6.5"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jon Larkowski", "Sandro Turriate", "Wolfram Arnold", "Corey Grusden"]
-  s.date = %q{2011-01-19}
+  s.date = %q{2011-02-08}
   s.description = %q{CheddarGetter API Client in Ruby}
   s.email = %q{jonlarkowski@gmail.com}
   s.extra_rdoc_files = [
@@ -45,7 +45,8 @@ Gem::Specification.new do |s|
      "spec/mousetrap_spec.rb",
      "spec/spec_helper.rb",
      "spec/support/fixtures.rb",
-     "spec/support/random_data.rb"
+     "spec/support/random_data.rb",
+     "sproutbox-mousetrap.gemspec"
   ]
   s.homepage = %q{http://github.com/hashrocket/mousetrap}
   s.rdoc_options = ["--charset=UTF-8"]
@@ -53,17 +54,17 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{CheddarGetter API Client in Ruby}
   s.test_files = [
-    "spec/factories.rb",
-     "spec/integration/smoke_test.rb",
+    "spec/integration/smoke_test.rb",
      "spec/integration/spike.rb",
+     "spec/factories.rb",
+     "spec/mousetrap/subscription_spec.rb",
+     "spec/mousetrap/resource_spec.rb",
      "spec/mousetrap/customer_spec.rb",
      "spec/mousetrap/plan_spec.rb",
-     "spec/mousetrap/resource_spec.rb",
-     "spec/mousetrap/subscription_spec.rb",
      "spec/mousetrap_spec.rb",
      "spec/spec_helper.rb",
-     "spec/support/fixtures.rb",
-     "spec/support/random_data.rb"
+     "spec/support/random_data.rb",
+     "spec/support/fixtures.rb"
   ]
 
   if s.respond_to? :specification_version then
