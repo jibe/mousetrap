@@ -209,6 +209,7 @@ module Mousetrap
       end
 
       raise response['error'] if response['error']
+      true
     end
   end
 end
