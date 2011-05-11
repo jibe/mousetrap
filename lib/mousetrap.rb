@@ -16,7 +16,7 @@ module Mousetrap
   autoload :Subscription, 'mousetrap/subscription'
 
   class << self
-    attr_accessor :product_code
+    attr_accessor :product_code, :base_uri
 
     def authenticate(user, password)
       Resource.basic_auth user, password
